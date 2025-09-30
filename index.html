@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Learn App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <h1>My Learn App</h1>
+        <p class="hero__tagline">
+          Organize your learning goals, track your progress, and celebrate wins.
+        </p>
+        <button id="startSession" class="button button--primary">
+          Start a Focus Session
+        </button>
+      </div>
+      <div class="hero__illustration" aria-hidden="true">
+        <span class="spark"></span>
+        <span class="spark"></span>
+        <span class="spark"></span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="card" aria-labelledby="goalHeading">
+        <div class="card__header">
+          <h2 id="goalHeading">Learning Goals</h2>
+            <span class="badge" id="goalCount">0 goals remaining</span>
+        </div>
+        <form id="goalForm" class="form" aria-label="Add a learning goal">
+          <label class="form__label" for="goalInput">What would you like to learn next?</label>
+          <div class="form__controls">
+            <input
+              id="goalInput"
+              class="form__input"
+              type="text"
+              name="goal"
+              placeholder="e.g. Practice CSS grid layouts"
+              autocomplete="off"
+              required
+            />
+            <button class="button button--primary" type="submit">Add goal</button>
+          </div>
+        </form>
+        <ul id="goalList" class="goal-list" aria-live="polite"></ul>
+      </section>
+
+      <section class="card" aria-labelledby="timerHeading">
+        <div class="card__header">
+          <h2 id="timerHeading">Focus Timer</h2>
+          <span class="badge badge--soft" id="sessionStatus">Idle</span>
+        </div>
+        <div class="timer" role="timer" aria-live="polite" aria-atomic="true">
+          <span id="timerDisplay" class="timer__display">25:00</span>
+        </div>
+        <div class="timer__controls">
+          <button class="button" id="startTimer">Start</button>
+          <button class="button" id="pauseTimer" disabled>Pause</button>
+          <button class="button" id="resetTimer" disabled>Reset</button>
+        </div>
+        <p class="timer__hint">Default session length is 25 minutes. Use the Start button to begin.</p>
+      </section>
+
+      <section class="card" aria-labelledby="notesHeading">
+        <div class="card__header">
+          <h2 id="notesHeading">Quick Notes</h2>
+        </div>
+        <form id="noteForm" class="form form--stacked" aria-label="Add a quick note">
+          <label class="form__label" for="noteInput">Capture ideas or things to revisit later.</label>
+          <textarea
+            id="noteInput"
+            class="form__input form__input--textarea"
+            name="note"
+            rows="3"
+            placeholder="Summarize what you just learned..."
+            required
+          ></textarea>
+          <div class="form__controls form__controls--end">
+            <button class="button button--primary" type="submit">Save note</button>
+          </div>
+        </form>
+        <ul id="noteList" class="note-list" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <template id="goalTemplate">
+      <li class="goal" data-id="">
+        <label class="goal__label">
+          <input type="checkbox" class="goal__checkbox" />
+          <span class="goal__text"></span>
+        </label>
+        <button class="goal__remove" type="button" aria-label="Remove goal">&times;</button>
+      </li>
+    </template>
+
+    <template id="noteTemplate">
+      <li class="note" data-id="">
+        <p class="note__text"></p>
+        <time class="note__time" datetime=""></time>
+      </li>
+    </template>
+
+    <footer class="footer">
+      <p>
+        Built to help you stay curious. Tip: add small, specific goals and reflect on progress
+        after each focus session.
+      </p>
+    </footer>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
